@@ -1,13 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <script src="codebase/dhtmlxgantt.js"></script>
-    <link href="codebase/dhtmlxgantt.css" rel="stylesheet">
-</head>
-<body>
-<div id="gantt_here" style='width:1000px; height:400px;'></div>
-<script type="text/javascript">
-    gantt.init("gantt_here");
-</script>
-</body>
+    <head>
+        
+        <!-- Include DHTMLX Gantt-->
+        <link rel="stylesheet" href="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css">
+        <script src="https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js"></script>
+    </head>
+    <body>
+        
+        <!-- Create a Gantt Chart Container-->
+        <div style="height: 500px">
+            <div id="gantt_here" style="width:100%; height:100%;"></div>   
+        </div>
+
+    
+        <script type = "text/javascript">
+            
+            function taskModelUpdate(){
+               
+            }
+            
+
+                                   
+            
+            
+        
+
+            var tasks = {
+                data:[
+
+                    // {{programs.data}}
+
+                    // Programs
+                    {id:1, text:"Program #1", start_date:"01-04-2023", duration:5, progress: 0.6, open:true}, 
+                    {id:2, text:"Program #2", start_date:"01-04-2023", duration:3, progress: 0.4, open:false},
+                    {id:3, text:"Program #3", start_date:"03-04-2023", duration:3, progress: 0.4, open:false},
+
+                    // Modules
+                    {id:4, text:"Module #1", start_date:"01-04-2023", duration:5, progress: 0.6, parent: 1, open:true}, 
+                    {id:5, text:"Module #2", start_date:"01-04-2023", duration:3, progress: 0.4, parent: 1, open:true},
+                    {id:6, text:"Module #3", start_date:"03-04-2023", duration:3, progress: 0.4, parent: 1, open:true},
+
+                    // Components
+                    {id:7, text:"cp #1", start_date:"01-04-2023", duration:5, progress: 0.6, parent: 5}, 
+                    {id:8, text:"cp #2", start_date:"01-04-2023", duration:3, progress: 0.4, parent: 5},
+                    {id:9, text:"cp #3", start_date:"03-04-2023", duration:3, progress: 0.4, parent: 5}
+
+                ],
+
+                // Dependencies
+    //            links:[
+    //                {id:1, source:1, target:2, type:"0"}
+    //            ]
+            };
+
+
+            /*  Initialize the Gantt Chart */
+            gantt.init("gantt_here");
+
+
+            /*  Load Data */
+            gantt.parse(tasks);
+
+
+            /*  Customize the Appearance and Behavior */
+            gantt.config.columns = [
+                {name:"text", label:"Task name", width:"*", tree:true },
+    //            {name:"start_date", label:"Start time", align: "center" },
+    //            {name:"duration", label:"Duration", align: "center" }
+            ];
+
+
+            /*  Interaction and Events */
+    //        gantt.attachEvent("onTaskClick", function(id,e){
+    //            // Your code here
+    //        });
+            
+    </script>
+  </body>
 </html>
